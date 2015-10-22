@@ -49,21 +49,26 @@ for data in lf:
 		values (?,?,?,?,?,?,?,?)
 		;''', t_prob)
 		print t_prob
-	#l=c.lastrowid
-	c.execute('''insert into inputs
-	(NJumps, DT, Seed)
-	values(?,?,?)
-	;''', (Jumps,DT,seed))
-	#cursor=c.execute('''select max(id)
-	#from mutation_probabilities;
-	#''')
-	#max_id1=cursor.fetchone()[0]
-	#print max_id1, l
-	#cursor=c.execute('''select max(id)
-	#from inputs
-	#''')
-	#max_id2=cursor.fetchone()[0]
-	#print max_id2
+		id_probabilities=c.lastrowid
+	else:
+		id_probabilities=result[0]
+	#print id_probabilities
+	par=(Jumps,DT,seed)
+	c.execute('''select * from inputs
+	where NJumps=? and DT=? and Seed=?
+	;''', par)
+	result2=c.fetchone()
+	#print result2
+	if result2==None:
+		c.execute('''insert into inputs
+		(NJumps, DT, Seed)
+		values(?,?,?)
+		;''', par)
+		print par
+		id_input=c.lastrowid
+	else:
+		id_input=result2[0]
+	print id_input
 #	c.execute('''insert into output
 #	(id_probabilities, id_input, Run, C, N, output)
 #	values (?,?,?,?,?,?)
