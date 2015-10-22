@@ -36,21 +36,39 @@ for data in lf:
 	Jumps=A[13] #number of jumps
 	RunC=A[14] #folder (run and c)
 	################finish here below##############################
-	c.execute('''insert into mutation_probabilities
-	(hgt_Eff, hgt_Tes, Eff_mutation, Tes_duplication, m5, m6,m7,m8)
-	values (?,?,?,?,?,?,?,?)
-	;''', (prob[1],prob[2],prob[3],prob[4],prob[5],prob[6],prob[7],prob[8]))
-	#print '*'
+	t_prob=(prob[1],prob[2],prob[3],prob[4],prob[5],prob[6],prob[7],prob[8])
+	c.execute('''select * from mutation_probabilities
+	where hgt_Eff=? and hgt_Tes=? and Eff_mutation=?
+	and Tes_duplication=? and m5=? and m6=? and m7=? and m8=?
+	;''', t_prob)
+	result=c.fetchone()
+	#print result
+	if result==None:
+		c.execute('''insert into mutation_probabilities
+		(hgt_Eff, hgt_Tes, Eff_mutation, Tes_duplication, m5, m6,m7,m8)
+		values (?,?,?,?,?,?,?,?)
+		;''', t_prob)
+		print t_prob
+	#l=c.lastrowid
 	c.execute('''insert into inputs
 	(NJumps, DT, Seed)
 	values(?,?,?)
 	;''', (Jumps,DT,seed))
-	c.execute('''insert into output
-	(id_probabilities, id_input, Run, C, N, output)
-	values (?,?,?,?,?,?)
-	;'''(,,RunC[0],RunC[1],RunC[2],)) #fix this line, need to extract the right id number and to figure out what i want to store in the database
+	#cursor=c.execute('''select max(id)
+	#from mutation_probabilities;
+	#''')
+	#max_id1=cursor.fetchone()[0]
+	#print max_id1, l
+	#cursor=c.execute('''select max(id)
+	#from inputs
+	#''')
+	#max_id2=cursor.fetchone()[0]
+	#print max_id2
+#	c.execute('''insert into output
+#	(id_probabilities, id_input, Run, C, N, output)
+#	values (?,?,?,?,?,?)
+#	;'''(,,RunC[0],RunC[1],RunC[2],)) #fix this line, need to extract the right id number and to figure out what i want to store in the database
 
-con.commit()
+conn.commit()
 
 conn.close()
-
