@@ -4,9 +4,9 @@ import pickle
 
 parser=argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,epilog=("""
 """)) ###*
-parser.add_argument("-t","--time", type=int, default=10**4,help="time considered in simulation")
-parser.add_argument("-o", "--host",type=int,default=100, help="host population")
-parser.add_argument("-b","--b", type=float, default=1, help="host energy intake")
+parser.add_argument("-t","--time", type=int, default=5000,help="time considered in simulation")
+parser.add_argument("-o", "--host",type=int,default=5e6, help="host population")
+parser.add_argument("-b","--b", type=float, default=0.001, help="host energy intake")
 args=parser.parse_args()
 T=args.time
 NH=args.host
@@ -18,21 +18,23 @@ def N_calc(Rs,i,N_old,t,present):
     sommatoria=0
     Ni=N_old
     for x in present:
-        sommatoria+=Rs[strains.index(x)]*Ni
-        #print sommatoria
-    Ni_t1=((ri*NH*Ni)/((b*NH)+sommatoria))-Ni
+        sommatoria+=Rs[strains.index(x)]*d[x][0][-1]
+    print sommatoria
+    Ni_t1=((ri*NH*Ni)/((b*NH)+sommatoria))#-Ni
     if Ni_t1<1:
         Ni_t1=0
     return Ni_t1
 
 def equilibrium(Rs,i):
     ri=Rs[i]
-    eq=(0.5-(b/ri))*NH
+    eq=(1-(b/ri))*NH #so Ri>b
     return eq
 
 N_init=1
-Rs=[5,3]#,3.3]#,3.4]
-Ts=[0,6000]#,5000,7000]
+Rs=[b+0.001, 0.0, 0.0]#,b+0.0005]
+Rs[1]=Rs[0]+0.00002
+Rs[2]=Rs[1]+0.000015
+Ts=[0,2000,2500]#,70000]
 strains=[]
 j=0
 for x in range(len(Ts)):
@@ -79,7 +81,8 @@ print d[1][1][0]
 #print len(d[2][0])
 #print len(d[3][0])
 #print d[0][0][0],d[0][1][0]
-print d[0][0][1],d[0][1][1], d[0][2]
+#for x in range(T):
+#    print d[0][0][x],d[0][1][x], d[0][2]
 pickle.dump(d, A, protocol=2)
 
 A.close
