@@ -6,4 +6,4 @@ N=1 #mimimal #people
 OLD_POP=1
 for x in range(k):
     POP=2**OLD_POP
-print POP*0.25
+print POP*0.625

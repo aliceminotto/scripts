@@ -19,14 +19,14 @@ for line in a:
                     else:
                         if riga[x]=='0':
                             if '-'+riga[x] in visti:
-                                print riga.index('-'+riga[x])+1, x+1
+                                print >>z,riga.index('-'+riga[x])+1, x+1
                                 i=1
                                 break
                             else:
                                 visti.add(riga[x])
                         if riga[x]=='-0':
                             if riga[x][1:] in visti:
-                                print riga.index(riga[x][1:])+1, x+1
+                                print >>z,riga.index(riga[x][1:])+1, x+1
                                 i=1
                                 break
                             else:
@@ -36,7 +36,7 @@ for line in a:
                 else:
                     #print visti, riga[x], riga
                     if -int(riga[x]) in visti:
-                        print riga.index(str(-int(riga[x])))+1,x+1
+                        print >>z,riga.index(str(-int(riga[x])))+1,x+1
                         i=1
                         break
                     else:
@@ -44,7 +44,7 @@ for line in a:
             if i==0:
                 #print x, len(visti), len(set(riga))
                 #print visti
-                print '-1'
+                print >>z,'-1'
 a.close()
 z.close()
 '''b=open(sys.argv[2],'r')
