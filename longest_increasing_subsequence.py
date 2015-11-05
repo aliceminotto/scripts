@@ -6,26 +6,28 @@ for line in a:
     n=int(line.strip())
     perm=a.next().strip().split()
 
-n=14
-perm='8 7 5 2 3 9 14 4 6 10 11 12 1 13'.split()
-
-def lon_in_seq(lista, indice):
-    if len(lista[indice:])==1:
-        best=[perm[-1]]
-    else:
-        previous=lon_in_seq(lista,indice+1)
-        print type(previous),'****'
-        if lista[indice]<previous[-1]:
-            previous.append(lista[indice])
-        best=previous
-    print indice,type(best), best
-    return best
-
-print lon_in_seq(perm,0)
-#not working first trial
-'''for x in range(len(perm)):
+#n=4
+#perm='2 5 1 3 6 4 7 '.split()
+for x in range(len(perm)):
     perm[x]=int(perm[x])
-#print perm
+
+#after a lot of study on internet this should work
+
+def lon_in_sub(lista):
+    res=[]
+    for i in range(len(lista)):
+        massimo=max([res[j] for j in range(i) if res[j][-1]<lista[i]] or [[]], key=len) #max substring
+        #print 'massimo', massimo
+        aggiunta=massimo+[lista[i]]#add new element
+        #print 'aggiunta', aggiunta
+        res.append(aggiunta)
+        #print res
+    return max(res, key=len)
+
+print >>z, ' '.join(str(x) for x in lon_in_sub(perm))
+print >>z,' '.join(str(x) for x in lon_in_sub(perm[::-1])[::-1])
+#not working first trial
+'''
 best=[]
 dec=[]
 for x in range(1,n+1):
@@ -74,6 +76,6 @@ for x in range(n,0,-1):
     if len(seq)>len(dec):
         dec=seq
 print >>z,' '.join(str(x) for x in best)
-print >>z,' '.join(str(x) for x in dec)
+print >>z,' '.join(str(x) for x in dec)'''
 a.close()
-z.close()'''
+z.close()
