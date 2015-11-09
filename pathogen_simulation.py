@@ -4,7 +4,7 @@ import pickle
 
 parser=argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,epilog=("""
 """)) ###*
-parser.add_argument("-t","--time", type=int, default=5000,help="time considered in simulation")
+parser.add_argument("-t","--time", type=int, default=10000,help="time considered in simulation")
 parser.add_argument("-o", "--host",type=int,default=5e6, help="host population")
 parser.add_argument("-b","--b", type=float, default=0.001, help="host energy intake")
 args=parser.parse_args()
@@ -31,10 +31,10 @@ def equilibrium(Rs,i):
     return eq
 
 N_init=1
-Rs=[b+0.001, 0.0, 0.0]#,b+0.0005]
+Rs=[b+0.001, 0.0, 0.0,b+0.0011]
 Rs[1]=Rs[0]+0.00002
 Rs[2]=Rs[1]+0.000015
-Ts=[0,2000,2500]#,70000]
+Ts=[0,2000,4000,7000]
 strains=[]
 j=0
 for x in range(len(Ts)):
