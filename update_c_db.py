@@ -3,6 +3,9 @@ import sqlite3
 import pickle
 import sys
 import os
+
+#creating a list of folders where there are the data to put in database
+
 lista_folder=[]
 for folder in range(1,len(sys.argv)):
 	lista_folder.append(sys.argv[folder])
@@ -69,10 +72,14 @@ for data in lf:
 	else:
 		id_input=result2[0]
 	print id_input
-#	c.execute('''insert into output
-#	(id_probabilities, id_input, Run, C, N, output)
-#	values (?,?,?,?,?,?)
-#	;'''(,,RunC[0],RunC[1],RunC[2],)) #fix this line, need to extract the right id number and to figure out what i want to store in the database
+	print RunC[0],RunC[1],RunC[2]
+	print type(id_probabilities)
+	c.execute('''insert into output
+	(id_probabilities, id_input, Run, C, N, output)
+	values (?,?,?,?,?,?)
+	;''',(id_probabilities,id_input,RunC[0],RunC[1],RunC[2],[])) #fix this line, figure out what i want to store in the database
+	#here almost same code for the image table once i decided which format use to store them
+	print c.lastrow()
 
 conn.commit()
 
