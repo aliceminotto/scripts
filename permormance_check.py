@@ -14,6 +14,6 @@ def use_translate(stringa):
     jump_n=stringa.translate(table,del_numb)
     print jump_n
 
-t=timeit.timeit(use_strip(ex_string))
-print t
-t=timeit.timeit(use_translate(ex_string))
+ print timeit.timeit(use_strip(ex_string))
+
+print timeit.timeit(use_translate(ex_string))
