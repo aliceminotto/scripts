@@ -17,20 +17,23 @@ conn.execute('''create table mutation_probabilities
 	m8 real not null);''')
 conn.execute('''create unique index prob
 	on mutation_probabilities (hgt_Eff,hgt_Tes,Eff_mutation,Tes_duplication,m5,m6,m7,m8)
-	''')
+	;''')
 conn.execute('''create table inputs
 	(id integer primary key autoincrement,
 	NJumps int not null,
 	DT int not null,
 	Seed int not null);''')
 #print '**' #checkpoint
+conn.execute(''' create unique index par
+	on inputs (NJumps,DT,Seed)
+	;''')
 conn.execute('''create table output
 	(id_probabilities int,
 	id_input int,
 	Run int not null,
 	C int not null,
 	N int not null,
-	output array,
+	output blob,
 	foreign key(id_probabilities) references mutation_probabilities(id),
 	foreign key(id_input) references inputs(id));''')
 #print '*'  #checkpoint
