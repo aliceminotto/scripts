@@ -7,7 +7,7 @@ from matplotlib.pyplot import cm
 import numpy as np
 import argparse
 import os
-plt.style.use('bmh')
+#plt.style.use('bmh')
 parser=argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,epilog=("""
 provide DT5000, 10000, 15000, 20000 and infinity in this order
 """))
@@ -61,7 +61,7 @@ for key in diz_pths:
 #plotting distribution of len for each c value comparing different DTs
 for c_value in nX:
 
-    for time_gap in [pth5]:#,pth2,pth3,pth4,pth5]:
+    for time_gap in [pth4]:#,pth2,pth3,pth4,pth5]:
 
         fig, axesa = plt.subplots(1,figsize=(16, 8))
         if time_gap==pth1:
@@ -115,7 +115,7 @@ for c_value in nX:
                 else:
                     break
         else:
-            for run in ['RUN48/']:#diz_pths[time_gap][1]:
+            for run in ['RUN14/']:#diz_pths[time_gap][1]:
                 j=1
                 fin=time_gap+run+'n0/'+'pts'+str(j)+'plotdata.p'
                 while os.path.exists(fin):
@@ -154,13 +154,17 @@ for c_value in nX:
 
     box = axesa.get_position()
     axesa.set_position([box.x0, box.y0 + box.height * 0.1,box.width, box.height * 0.9])
-    axesa.set_xlim([-500,4000])
+    axesa.set_xlim([-100,2500])
 
     # Put a legend below current axis
-    axesa.legend(tuple(line2d),tuple(labels),loc='upper center', bbox_to_anchor=(0.5, -0.15),fancybox=True, shadow=True, ncol=8)
+    leg=axesa.legend(tuple(line2d),tuple(labels),loc='best',fancybox=True, shadow=True, ncol=5)
+    #leg.get_frame().set_alpha(0.5)
+    #axesa.legend(tuple(line2d),tuple(labels),loc='upper center', bbox_to_anchor=(0.5, -0.15),fancybox=True, shadow=True, ncol=8)
 
-    titstr='$Eff, $'+diz_labels[time_gap]+'$, c='+str((int(c_value[-2])+1)/10.0)+'$'
+    titstr=diz_labels[time_gap]+'$, c='+str((int(c_value[-2])+1)/10.0)+'$'
     print titstr
     plt.suptitle(titstr, fontsize=40)
     #plt.legend(tuple(line2d),tuple(labels),loc='bottom center')
-    fig.savefig('/usr/users/TSL_20/minottoa/images/scatterplots/trial/'+'lendistribution_plot_eff'+str((int(c_value[-2])+1)/10.0)+'_'+diz_name[time_gap]+'.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'lendistribution_plot_eff'+str((int(c_value[-2])+1)/10.0)+'_'+diz_name[time_gap]+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'lendistribution_plot_eff'+str((int(c_value[-2])+1)/10.0)+'_'+diz_name[time_gap]+'.svg', bbox_inches='tight')

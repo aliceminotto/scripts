@@ -7,7 +7,7 @@ import matplotlib.ticker as mtick
 from matplotlib.pyplot import cm
 import argparse
 import os
-plt.style.use('bmh')
+#plt.style.use('bmh')
 parser=argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,epilog=("""
 """)) ###*
 ########each directory has a different DT
@@ -135,7 +135,9 @@ for x in pts1:
     axesa.set_xlim([0,200000])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot'+str(c-0.1)+'.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot'+str(c-0.1)+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot'+str(c-0.1)+'.svg',bbox_inches='tight')
 
 
 ###################################################################################################
@@ -239,8 +241,9 @@ for x in pts1:
     axesa.set_xlim([0,200000])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_te'+str(c)+'.png',format='png' ,dpi=1200, bbox_inches='tight')
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_te'+str(c)+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_te'+str(c)+'.svg',bbox_inches='tight')
 
     c+=0.1
 ###############################################################################################
@@ -332,8 +335,9 @@ for x in pts1:
     axesa.set_xlim([0,200000])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot'+str(c-0.1)+'.png',format='png' ,dpi=1200, bbox_inches='tight')#done
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot'+str(c-0.1)+'.png',format='png' ,dpi=100, bbox_inches='tight')#done
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot'+str(c-0.1)+'.svg',bbox_inches='tight')
 
 ################################################################################################
 #derivatives previous plot
@@ -426,8 +430,9 @@ for x in pts1:
     axesa.set_xlim([0,200000])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(c-0.1)+'.png',format='png' ,dpi=1200, bbox_inches='tight')
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(c-0.1)+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(c-0.1)+'.svg',bbox_inches='tight')
 
 ###################################################################################################################################
 #derivatives previous plot
@@ -525,8 +530,9 @@ for x in d:
     axesa.set_xlim([0,200000])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(x)+'.png',format='png' ,dpi=1200, bbox_inches='tight')
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(x)+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(x)+'.svg',bbox_inches='tight')
 
 #################################################################################################################
 #derivative previous plot
@@ -611,8 +617,9 @@ for x in d:
     axesa.set_xlim([0,200000])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_Te'+str(x)+'.png',format='png' ,dpi=1200, bbox_inches='tight')
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_Te'+str(x)+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_Te'+str(x)+'.svg',bbox_inches='tight')
 
 #############################################################################################
 #derivatives previous plot

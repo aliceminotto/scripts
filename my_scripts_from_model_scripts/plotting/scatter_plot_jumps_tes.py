@@ -7,7 +7,7 @@ from matplotlib.pyplot import cm
 import numpy as np
 import argparse
 import os
-plt.style.use('bmh')
+#plt.style.use('bmh')
 parser=argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,epilog=("""
 provide DT5000, 10000, 15000, 20000 and infinity in this order
 """))
@@ -61,7 +61,7 @@ for key in diz_pths:
 #plotting distribution of len for each c value comparing different DTs
 for c_value in nX:
 
-    for time_gap in [pth5]:#,pth2,pth3,pth4,pth5]:
+    for time_gap in [pth1]:#,pth2,pth3,pth4,pth5]:
 
         fig, axesa = plt.subplots(1,figsize=(16, 8))
         if time_gap==pth1:
@@ -79,39 +79,113 @@ for c_value in nX:
         line2d=[]
 
         if time_gap!=pth5:
-            for run in ['RUN14/']:#diz_pths[time_gap][1]:
+            for run in ['RUN34/']:#diz_pths[time_gap][1]:
                 j=1
                 fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
                 while os.path.exists(fin):
-                    print fin
-                    f=open(fin,"rb")
-                    A=pickle.load(f)
-                    f.close()
-                    #efflen=A[5]
-                    telen=A[6]
-                    j+=1
-                    fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
+                    if time_gap==pth1:
+                        if j in [1,20,40]:
+                            print fin
+                            f=open(fin,"rb")
+                            A=pickle.load(f)
+                            f.close()
+                            #efflen=A[5]
+                            telen=A[6]
+                            j+=1
+                            fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
 
-                    histval=frequenze(telen,100)
-                    classi=histval[0]
-                    occorrenze=histval[1]
+                            histval=frequenze(telen,200)
+                            classi=histval[0]
+                            occorrenze=histval[1]
 
-                    axesa.set_ylabel("$Frequency$", fontsize=40)
-                    axesa.set_xlabel("$Lengths$",fontsize=40)
-                    axesa.xaxis.set_tick_params(labelsize=20)
-                    axesa.xaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
-                    axesa.yaxis.set_tick_params(labelsize=20)
-                    axesa.yaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
-                    plt.ticklabel_format(style='sci', scilimits=(0,0))
+                            axesa.set_ylabel("$Frequency$", fontsize=40)
+                            axesa.set_xlabel("$Lengths$",fontsize=40)
+                            axesa.xaxis.set_tick_params(labelsize=20)
+                            axesa.xaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
+                            axesa.yaxis.set_tick_params(labelsize=20)
+                            axesa.yaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
+                            plt.ticklabel_format(style='sci', scilimits=(0,0))
 
 
-                    print j-1
-                    col=next(color)
-                    plt.scatter(classi,occorrenze, color=col,label=diz_labels[time_gap],alpha=.5)
-                    plt.plot(classi, occorrenze, color=col, ls='--', alpha=.2)
+                            print j-1
+                            col=next(color)
+                            #plt.scatter(classi,occorrenze, color=col,label=diz_labels[time_gap],alpha=.5)
+                            plt.scatter(classi,occorrenze, color=col,label=j-1)#,alpha=.5)
+                            plt.plot(classi, occorrenze, color=col, ls='-',alpha=.5)
 
-                    line2d.append(lns.Line2D(range(len(telen)),telen,color=col,ls='solid'))
-                    labels.append(j-1)
+                            line2d.append(lns.Line2D(range(len(telen)),telen,color=col,ls='solid'))
+                            labels.append(j-1)
+                        else:
+                            j+=1
+                            fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
+                            col=next(color)
+                    elif time_gap==pth4:
+                        if j in [1,5,10]:
+                            print fin
+                            f=open(fin,"rb")
+                            A=pickle.load(f)
+                            f.close()
+                            #efflen=A[5]
+                            telen=A[6]
+                            j+=1
+                            fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
+
+                            histval=frequenze(telen,200)
+                            classi=histval[0]
+                            occorrenze=histval[1]
+
+                            axesa.set_ylabel("$Frequency$", fontsize=40)
+                            axesa.set_xlabel("$Lengths$",fontsize=40)
+                            axesa.xaxis.set_tick_params(labelsize=20)
+                            axesa.xaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
+                            axesa.yaxis.set_tick_params(labelsize=20)
+                            axesa.yaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
+                            plt.ticklabel_format(style='sci', scilimits=(0,0))
+
+
+                            print j-1
+                            col=next(color)
+                            #plt.scatter(classi,occorrenze, color=col,label=diz_labels[time_gap],alpha=.5)
+                            plt.scatter(classi,occorrenze, color=col,label=j-1)#,alpha=.5)
+                            plt.plot(classi, occorrenze, color=col, ls='-',alpha=.5)
+
+                            line2d.append(lns.Line2D(range(len(telen)),telen,color=col,ls='solid'))
+                            labels.append(j-1)
+                        else:
+                            j+=1
+                            fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
+                            col=next(color)
+                    else:
+                        print fin
+                        f=open(fin,"rb")
+                        A=pickle.load(f)
+                        f.close()
+                        #efflen=A[5]
+                        telen=A[6]
+                        j+=1
+                        fin=time_gap+run+c_value+'pts'+str(j)+'plotdata.p'
+
+                        histval=frequenze(telen,200)
+                        classi=histval[0]
+                        occorrenze=histval[1]
+
+                        axesa.set_ylabel("$Frequency$", fontsize=40)
+                        axesa.set_xlabel("$Lengths$",fontsize=40)
+                        axesa.xaxis.set_tick_params(labelsize=20)
+                        axesa.xaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
+                        axesa.yaxis.set_tick_params(labelsize=20)
+                        axesa.yaxis.set_major_formatter(mtick.ScalarFormatter(useMathText=True))
+                        plt.ticklabel_format(style='sci', scilimits=(0,0))
+
+
+                        print j-1
+                        col=next(color)
+                        #plt.scatter(classi,occorrenze, color=col,label=diz_labels[time_gap],alpha=.5)
+                        plt.scatter(classi,occorrenze, color=col,label=j-1)#,alpha=.5)
+                        plt.plot(classi, occorrenze, color=col, ls='--')#, alpha=.2)
+
+                        line2d.append(lns.Line2D(range(len(telen)),telen,color=col,ls='solid'))
+                        labels.append(j-1)
                 else:
                     break
         else:
@@ -128,7 +202,7 @@ for c_value in nX:
                     j+=1
                     fin=time_gap+run+'n0/'''+'pts'+str(j)+'plotdata.p'
 
-                    histval=frequenze(telen,100)
+                    histval=frequenze(telen,200)
                     classi=histval[0]
                     occorrenze=histval[1]
 
@@ -143,8 +217,9 @@ for c_value in nX:
 
                     print j-1
                     col=next(color)
-                    plt.scatter(classi,occorrenze, color=col,label=diz_labels[time_gap],alpha=.5)
-                    plt.plot(classi, occorrenze, color=col, ls='--', alpha=.2)
+                    #plt.scatter(classi,occorrenze, color=col,label=diz_labels[time_gap],alpha=.5)
+                    plt.scatter(classi,occorrenze, color=col,label=j-1)#,alpha=.5)
+                    plt.plot(classi, occorrenze, color=col, ls='--')#, alpha=.2)
 
                     line2d.append(lns.Line2D(range(len(telen)),telen,color=col,ls='solid'))
                     labels.append(j-1)
@@ -153,13 +228,18 @@ for c_value in nX:
 
     box = axesa.get_position()
     axesa.set_position([box.x0, box.y0 + box.height * 0.1,box.width, box.height * 0.9])
-    #axesa.set_xlim([-500,4000])
+    axesa.set_xlim([0,16000])
+    axesa.set_ylim(ymin=0)
 
     # Put a legend below current axis
-    axesa.legend(tuple(line2d),tuple(labels),loc='upper center', bbox_to_anchor=(0.5, -0.15),fancybox=True, shadow=True, ncol=8)
+    leg=axesa.legend(loc='best',fancybox=True, ncol=5,scatterpoints=1)#,framealpha=0.5)
+    #leg.get_frame().set_alpha(0.5)
+    #axesa.legend(tuple(line2d),tuple(labels),loc='upper center', bbox_to_anchor=(0.5, -0.15),fancybox=True, shadow=True, ncol=8)
 
-    titstr='$TEs, $'+diz_labels[time_gap]+'$, c='+str((int(c_value[-2])+1)/10.0)+'$'
+    titstr=diz_labels[time_gap]+'$, c='+str((int(c_value[-2])+1)/10.0)+'$'
     print titstr
     plt.suptitle(titstr, fontsize=40)
     #plt.legend(tuple(line2d),tuple(labels),loc='bottom center')
-    fig.savefig('/usr/users/TSL_20/minottoa/images/scatterplots/trial_te/'+'lendistribution_plot_te'+str((int(c_value[-2])+1)/10.0)+'_'+diz_name[time_gap]+'.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'lendistribution_plot_te'+str((int(c_value[-2])+1)/10.0)+'_'+diz_name[time_gap]+'.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'lendistribution_plot_te'+str((int(c_value[-2])+1)/10.0)+'_'+diz_name[time_gap]+'.svg',bbox_inches='tight')

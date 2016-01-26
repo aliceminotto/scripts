@@ -7,7 +7,7 @@ import matplotlib.ticker as mtick
 from matplotlib.pyplot import cm
 import argparse
 import os
-plt.style.use('bmh')
+#plt.style.use('bmh')
 parser=argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,epilog=("""
 """)) ###*
 ########each directory has a different DT
@@ -185,8 +185,10 @@ for x in pts1:
     axesa.set_ylim([-200,200])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot'+str(c-0.1)+'_derivatives.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot'+str(c-0.1)+'_derivatives.png',format='png' ,dpi=100, bbox_inches='tight')
      #done
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot'+str(c-0.1)+'_derivatives.svg',bbox_inches='tight')
 
 ####################################################################################################
 #plotting len of eff and tes over time for same c and different DT
@@ -299,7 +301,9 @@ for x in pts1:
     axesa.set_ylim([-200,200])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_te'+str(c)+'_derivatives.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_te'+str(c)+'_derivatives.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_te'+str(c)+'_derivatives.svg',bbox_inches='tight')
 
     c+=0.1
 
@@ -387,7 +391,9 @@ for x in pts1:
     axesa.set_xlim([0,L])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot'+str(c-0.1)+'_derivatives.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot'+str(c-0.1)+'_derivatives.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot'+str(c-0.1)+'_derivatives.svg',bbox_inches='tight')
 
 ################################################################################################
 #plotting number of tes and eff over time for same c and different DT
@@ -500,8 +506,9 @@ for x in pts1:
     axesa.set_xlim([0,L])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(c-0.1)+'_derivatives.png',format='png' ,dpi=1200, bbox_inches='tight')
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(c-0.1)+'_derivatives.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(c-0.1)+'_derivatives.svg',bbox_inches='tight')
 
 ####################################################################################################################################
 #same DT different c value
@@ -592,8 +599,9 @@ for x in d:
     axesa.set_xlim([0,L])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(x)+'_derivatives.png',format='png' ,dpi=1200, bbox_inches='tight')
-
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(x)+'_derivatives.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'unit_plot_eff_Te'+str(x)+'_derivatives.svg',bbox_inches='tight')
 
 ################################################################################################################
 '''for x in d:
@@ -678,7 +686,9 @@ for x in d:
     axesa.set_xlim([0,L])
     #axesa.set_xlim([0,80000])
 
-    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_Te'+str(x)+'_derivatives.png',format='png' ,dpi=1200, bbox_inches='tight')
+    fig.patch.set_alpha(0.5)
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_Te'+str(x)+'_derivatives.png',format='png' ,dpi=100, bbox_inches='tight')
+    fig.savefig('/usr/users/TSL_20/minottoa/images/'+'len_plot_eff_Te'+str(x)+'_derivatives.svg',bbox_inches='tight')
 
 '''
 
